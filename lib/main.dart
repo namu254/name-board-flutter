@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:name_board/fullscreen.dart';
+import 'package:name_board/fullscreenLogo.dart';
 
 void main() {
   runApp(MaterialApp(
-    
     title: 'Sign Board',
     home: FirstScreen(),
   ));
@@ -23,8 +23,9 @@ class _FirstScreenState extends State<FirstScreen> {
         title: "Guest name sign board",
         home: Scaffold(
             appBar: AppBar(
-              backgroundColor: Color(0xff515148),
-                title: Center(child: Text("Guest name sign board"),
+                backgroundColor: Color(0xff515148),
+                title: Center(
+                  child: Text("Guest name sign board"),
                 )),
             body: Center(
               child: ListView(
@@ -47,14 +48,21 @@ class _FirstScreenState extends State<FirstScreen> {
                     splashColor: Colors.blueAccent,
                     onPressed: () {
                       String textToSend = textFieldController.text;
-                      Navigator.push(
+                      if (textToSend == "") {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => FullScreen(
-                              text: textToSend,
-                            ),
-                          ));
-                      
+                              builder: (context) => FullscreenLogo()),
+                        );
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullScreen(
+                                text: textToSend,
+                              ),
+                            ));
+                      }
                     },
                     child: Text(
                       "Go fullscreen",
